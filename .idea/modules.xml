@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/tekek-client.iml" filepath="$PROJECT_DIR$/.idea/tekek-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tekek.iml" filepath="$PROJECT_DIR$/.idea/tekek.iml" />
     </modules>
   </component>
 </project>

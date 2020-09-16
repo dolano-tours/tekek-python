@@ -1,2 +1,2 @@
-# tekek-client
-client for sending debug message to debugger(tekek) server
+# Tekek
+client for sending log or debugging message to realtime logging server

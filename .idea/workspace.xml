@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c34f794b-f33b-4f58-9e6b-15073c78e03e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/tekek.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tekek-client.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__debugger.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__debugger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__level.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__level.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__message.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__message.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1hbQRYeijqGQYVz368D7iWfLtW9" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/build" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tekek" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Build" type="ShConfigurationType">
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/build" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/usr/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c34f794b-f33b-4f58-9e6b-15073c78e03e" name="Default Changelist" comment="" />
+      <created>1600277305156</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600277305156</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1496" y="602" width="1084" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600278271488">
+      <screen x="1080" y="454" width="1920" height="1080" />
+    </state>
+    <state x="1496" y="602" width="1084" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600278271488" />
+    <state x="1822" y="751" width="426" height="383" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600278244169">
+      <screen x="1080" y="454" width="1920" height="1080" />
+    </state>
+    <state x="1822" y="751" width="426" height="383" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600278244169" />
+    <state x="1819" y="688" width="428" height="482" key="FileChooserDialogImpl" timestamp="1600278264258">
+      <screen x="1080" y="454" width="1920" height="1080" />
+    </state>
+    <state x="1819" y="688" width="428" height="482" key="FileChooserDialogImpl/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600278264258" />
+    <state x="2023" y="579" key="SettingsEditor" timestamp="1600277319348">
+      <screen x="1080" y="454" width="1920" height="1080" />
+    </state>
+    <state x="2023" y="579" key="SettingsEditor/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@3000.454.1920.1080" timestamp="1600277319348" />
+  </component>
+</project>
