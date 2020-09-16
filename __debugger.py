@@ -22,7 +22,7 @@ class __Debugger:
 
         self.__queue: List[Message] = []
 
-        self.__start()
+        asyncio.ensure_future(self.__start())
 
     async def __add_to_queue(self, message: Message) -> bool:
         """ Add to Queue
@@ -94,6 +94,7 @@ class __Debugger:
             await asyncio.sleep(1)
 
     async def __start(self) -> bool:
+        print("Debugger Started !")
         try:
             asyncio.ensure_future(self.__timer())
         except:
