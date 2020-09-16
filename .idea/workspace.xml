@@ -20,19 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c34f794b-f33b-4f58-9e6b-15073c78e03e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/tekek.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tekek-client.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__debugger.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__debugger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__level.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__level.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__message.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__message.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build" beforeDir="false" afterPath="$PROJECT_DIR$/__build__" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +61,7 @@
   <component name="RunManager">
     <configuration name="Build" type="ShConfigurationType">
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/build" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/__build__" />
       <option name="SCRIPT_OPTIONS" value="" />
       <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
       <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -107,10 +97,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1496" y="602" width="1084" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600278271488">
+    <state x="1494" y="576" width="1084" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600278525525">
       <screen x="1080" y="454" width="1920" height="1080" />
     </state>
-    <state x="1496" y="602" width="1084" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600278271488" />
+    <state x="1494" y="576" width="1084" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600278525525" />
     <state x="1822" y="751" width="426" height="383" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600278244169">
       <screen x="1080" y="454" width="1920" height="1080" />
     </state>
