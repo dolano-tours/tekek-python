@@ -64,7 +64,7 @@ class __Debugger:
 
     async def __log(self):
         # TODO: Implement smart logging, so the highest importance get pushed first
-        msg: Message = self.__queue[len(self.__queue)-1]
+        msg: Message = self.__queue.pop(len(self.__queue)-1)
         asyncio.ensure_future(self.__to_console(msg))
         asyncio.ensure_future(self.__to_file(msg))
         asyncio.ensure_future(self.__to_server(msg))
@@ -86,20 +86,17 @@ class __Debugger:
     async def __timer(self):
         while True:
             if len(self.__queue) >= 1:
-                print("Running Logger...")
                 asyncio.ensure_future(self.__log())
-            else:
-                print("Skipping...")
 
             await asyncio.sleep(1)
 
     async def __start(self) -> bool:
-        print("Debugger Started !")
         try:
             asyncio.ensure_future(self.__timer())
         except:
             return False
 
+        print("Debugger Started !")
         return True
 
     async def log(self, identifier: str, content: Any) -> str:
@@ -109,7 +106,7 @@ class __Debugger:
         :param content:
         :return:
         """
-        return await self.__make_message(identifier, content, Level.LOG)
+        return await self.__make_message(identifier, content, Level.LOG.value)
 
     async def info(self, identifier: str, content: Any):
         """ Information, must know without any urgency
@@ -118,7 +115,7 @@ class __Debugger:
         :param content:
         :return:
         """
-        return await self.__make_message(identifier, content, Level.INFO)
+        return await self.__make_message(identifier, content, Level.INFO.value)
 
     async def success(self, identifier: str, content: Any):
         """ Success Information, process has ben sucessfully ran
@@ -127,7 +124,7 @@ class __Debugger:
         :param content:
         :return:
         """
-        return await self.__make_message(identifier, content, Level.SUCCESS)
+        return await self.__make_message(identifier, content, Level.SUCCESS.value)
 
     async def warning(self, identifier: str, content: Any):
         """ Warning, process(es) encounter something that not suppose to happen, but still can be handled
@@ -136,7 +133,7 @@ class __Debugger:
         :param content:
         :return:
         """
-        return await self.__make_message(identifier, content, Level.WARNING)
+        return await self.__make_message(identifier, content, Level.WARNING.value)
 
     async def error(self, identifier: str, content: Any):
         """ Warning, process(es) errored out, still can be handled, but urgently need an attention
@@ -145,7 +142,7 @@ class __Debugger:
         :param content:
         :return:
         """
-        return await self.__make_message(identifier, content, Level.ERROR)
+        return await self.__make_message(identifier, content, Level.ERROR.value)
 
     async def critical(self, identifier: str, content: Any):
         """ Warning, process(es) errored out, program exit unexpectedly
@@ -154,4 +151,4 @@ class __Debugger:
         :param content:
         :return:
         """
-        return await self.__make_message(identifier, content, Level.CRITICAL)
+        return await self.__make_message(identifier, content, Level.CRITICAL.value)
