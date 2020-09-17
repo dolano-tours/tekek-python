@@ -1,8 +1,17 @@
-from typing import Any, List
-
 import time
 
+from datetime import datetime
+from typing import Any, List
+from enum import Enum
+
 from .__level import __Level as Level
+
+
+class MessageStructure(Enum):
+    TIMESTAMP = time.struct_time,
+    IDENTIFIER = str,
+    CONTENT = Any,
+    LEVEL = Level
 
 
 class __Message:
@@ -10,10 +19,17 @@ class __Message:
     content: str = None
     level: Level = Level.INFO
 
-    def __init__(self, identifier: str, content: Any, level: Level):
-        self.identifier: str = identifier
-        self.content: str = self.__convert_to_str(content)
-        self.level: Level = level
+    def __init__(
+            self,
+            timestamp: MessageStructure.TIMESTAMP.value,
+            identifier: MessageStructure.IDENTIFIER.value,
+            content: MessageStructure.CONTENT.value,
+            level: MessageStructure.LEVEL.value
+    ):
+        self.timestamp: MessageStructure.TIMESTAMP.value = timestamp
+        self.identifier: MessageStructure.IDENTIFIER.value = identifier
+        self.content: MessageStructure.CONTENT.value = self.__convert_to_str(content)
+        self.level: MessageStructure.LEVEL.value = level
 
     @staticmethod
     def __convert_to_str(content: Any) -> str:
@@ -30,9 +46,9 @@ class __Message:
 
     def __convert_to_content(self) -> str:
         return "[{}][{}][{}] {}".format(
-            time.strftime("%H:%M:%S", time.localtime()),
+            time.strftime("%d-%m %H:%M:%S", self.timestamp),
             self.identifier,
-            self.level,
+            self.level.value,
             self.content
         )
 

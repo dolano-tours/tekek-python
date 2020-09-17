@@ -4,7 +4,7 @@ from enum import Enum, unique
 @unique
 class __Level(Enum):
     """ Enumeration of different levels of debug message """
-    LOG = "LOG"
+    DEBUG = "DEBUG"
     INFO = "INFO"
     SUCCESS = "SUCCESS"
     WARNING = "WARNING"
