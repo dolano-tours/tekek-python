@@ -29,7 +29,7 @@ class __Debugger:
                 "host": "http://localhost:5000",
                 "method": requests.get,
                 "data": {
-                    MessageStructure.TIMESTAMP: "timestamp",
+                    MessageStructure.TIMESTAMP: "    ",
                     MessageStructure.IDENTIFIER: "identifier",
                     MessageStructure.CONTENT: "content",
                     MessageStructure.LEVEL: "level"
@@ -146,7 +146,7 @@ class __Debugger:
         logging.debug(str(data))
         for i in range(tries):
             try:
-                if requests.get(
+                if self.__server_routes["method"](
                     url=host,
                     data=data,
                     json=data

@@ -23,9 +23,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tekek/__debugger.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__debugger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekek/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekek/__level.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__level.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekek/__message.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__message.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
