@@ -266,6 +266,7 @@ logger.add_level(my_new_level)
 
 #### Using LevelModel
 
+##### Recommended Way
 level model enable you to directly modify your request meta and/or request model
 
 first create your level
@@ -338,4 +339,47 @@ finally, add your brand new level into Tekek
 ```python
 logger = Tekek(__name__)
 logger.add_level(my_new_level)
+```
+
+##### Alternative Way
+
+alternative way if you considering adding a lot of levels with the same `RequestMeta` and `RequestModel` you can use `set_request_meta` and `set_request_model` to set global default `RequestMeta` and `RequestModel` respectively
+
+using above configuration we can do:
+
+```python
+meh_level: Level = Level(
+    name="MEH",
+    importance=10
+)
+
+hmm_level: Level = Level(
+    name="HMM",
+    importance=20
+)
+
+how_level: Level = Level(
+    name="HOW",
+    importance=30
+)
+
+oops_level: Level = Level(
+    name="OOPS",
+    importance=40
+)
+
+wow_level: Level = Level(
+    name="WOW",
+    importance=50
+)
+
+logger = Tekek(__name__)
+logger.set_request_meta(my_new_request_meta)
+logger.set_request_model(my_new_request_model)
+
+logger.add_level(meh_level)
+logger.add_level(hmm_level)
+logger.add_level(how_level)
+logger.add_level(oops_level)
+logger.add_level(wow_level)
 ```

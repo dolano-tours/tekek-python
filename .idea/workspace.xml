@@ -19,10 +19,25 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34f794b-f33b-4f58-9e6b-15073c78e03e" name="Default Changelist" comment="">
+    <list default="true" id="debdeda2-0af8-4fb4-84ff-f5e5f110c50c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/example_fast_api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tekek/.tekek.py.swp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tekek.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tekek.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USAGE.md" beforeDir="false" afterPath="$PROJECT_DIR$/USAGE.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekek/__debugger.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__debugger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/__debugger.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/__level.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/__message.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/stack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/tekek.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/tekek.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/types.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_usage.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_usage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +54,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1hbQRYeijqGQYVz368D7iWfLtW9" />
+  <component name="ProjectId" id="1hr7GuqjcAXWgsqz63U6jHeL46A" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -50,35 +65,66 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/build" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests.py" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tekek" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Build" type="ShConfigurationType">
-      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/__build__" />
-      <option name="SCRIPT_OPTIONS" value="" />
-      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
-      <option name="INTERPRETER_PATH" value="/usr/bin/bash" />
+  <component name="RunManager" selected="Python.Manual Test">
+    <configuration name="Manual Test" type="PythonConfigurationType" factoryName="Python">
+      <module name="tekek" />
       <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example_fast_api.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest" type="tests" factoryName="py.test" nameIsGenerated="true">
+      <module name="tekek" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;tests/&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;CUSTOM&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.Manual Test" />
+      <item itemvalue="Python tests.pytest" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c34f794b-f33b-4f58-9e6b-15073c78e03e" name="Default Changelist" comment="" />
-      <created>1600277305156</created>
+      <changelist id="debdeda2-0af8-4fb4-84ff-f5e5f110c50c" name="Default Changelist" comment="" />
+      <created>1600757266469</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1600277305156</updated>
+      <updated>1600757266469</updated>
     </task>
     <servers />
   </component>
@@ -98,25 +144,65 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1494" y="576" width="1084" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600278525525">
+    <state x="1486" y="472" width="1084" height="804" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600784815194">
       <screen x="1080" y="454" width="1920" height="1080" />
     </state>
-    <state x="1494" y="576" width="1084" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600278525525" />
-    <state x="1822" y="751" width="426" height="383" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600278244169">
+    <state x="1486" y="472" width="1084" height="804" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600784815194" />
+    <state x="1760" y="655" width="529" height="412" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1600759431224">
       <screen x="1080" y="454" width="1920" height="1080" />
     </state>
-    <state x="1822" y="751" width="426" height="383" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600278244169" />
-    <state x="1819" y="688" width="428" height="482" key="FileChooserDialogImpl" timestamp="1600278264258">
+    <state x="1760" y="655" width="529" height="412" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600759431224" />
+    <state x="1813" y="622" width="428" height="482" key="FileChooserDialogImpl" timestamp="1600784813433">
       <screen x="1080" y="454" width="1920" height="1080" />
     </state>
-    <state x="1819" y="688" width="428" height="482" key="FileChooserDialogImpl/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600278264258" />
-    <state x="2023" y="579" key="SettingsEditor" timestamp="1600277319348">
+    <state x="1813" y="622" width="428" height="482" key="FileChooserDialogImpl/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600784813433" />
+    <state width="950" height="1016" key="GridCell.Tab.0.bottom" timestamp="1600851314186">
+      <screen x="0" y="0" width="1080" height="1920" />
+    </state>
+    <state width="950" height="1016" key="GridCell.Tab.0.bottom/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@0.0.1080.1920" timestamp="1600851314186" />
+    <state width="950" height="1016" key="GridCell.Tab.0.bottom/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600849531443" />
+    <state width="1068" height="227" key="GridCell.Tab.0.bottom/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@3000.454.1920.1080" timestamp="1600785566753" />
+    <state width="950" height="1016" key="GridCell.Tab.0.center" timestamp="1600851314185">
+      <screen x="0" y="0" width="1080" height="1920" />
+    </state>
+    <state width="950" height="1016" key="GridCell.Tab.0.center/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@0.0.1080.1920" timestamp="1600851314185" />
+    <state width="950" height="1016" key="GridCell.Tab.0.center/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600849531443" />
+    <state width="1068" height="227" key="GridCell.Tab.0.center/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@3000.454.1920.1080" timestamp="1600785566753" />
+    <state width="950" height="1016" key="GridCell.Tab.0.left" timestamp="1600851314185">
+      <screen x="0" y="0" width="1080" height="1920" />
+    </state>
+    <state width="950" height="1016" key="GridCell.Tab.0.left/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@0.0.1080.1920" timestamp="1600851314185" />
+    <state width="950" height="1016" key="GridCell.Tab.0.left/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600849531443" />
+    <state width="1068" height="227" key="GridCell.Tab.0.left/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@3000.454.1920.1080" timestamp="1600785566753" />
+    <state width="950" height="1016" key="GridCell.Tab.0.right" timestamp="1600851314185">
+      <screen x="0" y="0" width="1080" height="1920" />
+    </state>
+    <state width="950" height="1016" key="GridCell.Tab.0.right/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@0.0.1080.1920" timestamp="1600851314185" />
+    <state width="950" height="1016" key="GridCell.Tab.0.right/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600849531443" />
+    <state width="1068" height="227" key="GridCell.Tab.0.right/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@3000.454.1920.1080" timestamp="1600785566753" />
+    <state width="1899" height="359" key="GridCell.Tab.1.bottom" timestamp="1600846964663">
       <screen x="1080" y="454" width="1920" height="1080" />
     </state>
-    <state x="2023" y="579" key="SettingsEditor/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@3000.454.1920.1080" timestamp="1600277319348" />
-    <state x="2543" y="214" width="672" height="678" key="search.everywhere.popup" timestamp="1600357784248">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1899" height="359" key="GridCell.Tab.1.bottom/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600846964663" />
+    <state width="1899" height="359" key="GridCell.Tab.1.center" timestamp="1600846964663">
+      <screen x="1080" y="454" width="1920" height="1080" />
     </state>
-    <state x="2543" y="214" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/3840.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600357784248" />
+    <state width="1899" height="359" key="GridCell.Tab.1.center/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600846964663" />
+    <state width="1899" height="359" key="GridCell.Tab.1.left" timestamp="1600846964663">
+      <screen x="1080" y="454" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="359" key="GridCell.Tab.1.left/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600846964663" />
+    <state width="1899" height="359" key="GridCell.Tab.1.right" timestamp="1600846964663">
+      <screen x="1080" y="454" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="359" key="GridCell.Tab.1.right/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600846964663" />
+    <state x="1553" y="527" key="SettingsEditor" timestamp="1600758671975">
+      <screen x="1080" y="454" width="1920" height="1080" />
+    </state>
+    <state x="1553" y="527" key="SettingsEditor/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600758671975" />
+    <state width="498" height="445" key="SwitcherDM" timestamp="1600791896650">
+      <screen x="1080" y="454" width="1920" height="1080" />
+    </state>
+    <state width="498" height="445" key="SwitcherDM/0.0.1080.1920/3000.454.1920.1080/1080.454.1920.1080@1080.454.1920.1080" timestamp="1600791896650" />
   </component>
 </project>

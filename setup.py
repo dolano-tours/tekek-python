@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="tekek",
-    version="0.0.8",
+    version="0.1.2",
     author="Erlangga Ibrahim",
     author_email="erlanggaibr2@gmail.com",
     description="An Asynchronous Remote and Local Debugging Tools",
@@ -13,6 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/dolano-tours/tekek",
     packages=setuptools.find_packages(),
+    python_requires='>=3.7',
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
