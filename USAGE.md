@@ -6,6 +6,37 @@
 
 ## Advanced Usage
 
+### Custom Logger
+
+Tekek built on top of python built-in's `logging.Logger` as it's engine. by default tekek will create new `logging.Logger` instance with level treshold of `10`.
+
+to customize logger engine you can do it from constructor or using `set_logger` method. for example we want to create new logger instance with name of `custom_logger_name` with treshold level of `50`:
+
+```python
+logger = Tekek(
+  name=__name__,
+  logger=logging.Logger("custom_logger_name", 50)
+)
+```
+
+or, using method
+
+```python
+logger = Tekek(name=__name__)
+logger.set_logger(logging.Logger("custom_logger_name", 50))
+```
+
+and yes! you can do anything to your logger first, before using it inside tekek.
+
+```python
+my_custom_logger_engine = logging.Logger("custom_logger_name", 50)
+my_custom_logger_engine.setLevel(10)
+my_custom_logger_engine.addFilter(filter)
+
+logger = Tekek(name=__name__)
+logger.set_logger(my_custom_logger_engine)
+```
+
 ### Console Logging
 
 console logging is enabled by default, but you still have the option to disable it.

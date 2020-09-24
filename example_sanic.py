@@ -2,10 +2,9 @@ from sanic import Sanic
 from sanic.response import json
 from tekek import Tekek
 
-import asyncio
-
 app = Sanic("sanic_example")
-logger = Tekek("sanic_example")
+logger = Tekek("sanic_example", compat_app=app)
+
 
 @app.route("/", methods=["GET"])
 async def root(request):
@@ -17,5 +16,4 @@ async def root(request):
     )
 
 if __name__ == "__main__":
-    app.add_task(logger.task)
     app.run(host="0.0.0.0", port=8000)

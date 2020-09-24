@@ -2,10 +2,11 @@ import sys
 import time
 import types
 import asyncio
+import logging
 
 from datetime import datetime
 from _io import TextIOWrapper
-from typing import Dict, Union, Callable, List, Optional
+from typing import Dict, Union, Callable, List
 from uuid import uuid4
 
 from .models import Record
@@ -16,6 +17,8 @@ from .models import DEFAULT_REQUEST_MODEL_JSON
 from .models import DEFAULT_REQUEST_META
 
 
+# TODO: support formatter
+# TODO:
 class Tekek:
     def __init__(
             self,
@@ -29,11 +32,20 @@ class Tekek:
 
             file_logging: bool = False,
             file_path: str = "",
+
+            logger: logging.Logger = None,
+            refresh_time: float = 0.3,
+
+            compat_app=None
     ):
-        self.name = name
-        self.running = False
+        self.name: str = name
+        self.refresh_time: float = refresh_time
+        self.running: bool = False
 
         # --- CONSOLE --- #
+        if not logger:
+            logger: logging.Logger = logging.Logger(self.name, 10)
+        self.__logger: logging.Logger = logger
         self.__console_logging: bool = console_logging
         self.__console_file: TextIOWrapper = console_file
 
@@ -56,69 +68,71 @@ class Tekek:
         for i in [LOG, DEBUG, INFO, WARNING, ERROR, EXCEPTION, CRITICAL]:
             self.add_level(i)
 
-        self.task = self.__start()
+        # TODO: Fix this compat_app thing
+        if compat_app.__class__.__name__ == "FastAPI":
+            asyncio.ensure_future(self.start())
+        elif compat_app.__class__.__name__ == "Sanic":
+            compat_app.add_task(self.start())
 
-    async def __start(self) -> bool:
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.__manager_task.cancel()
+        self.stop()
+
+    async def start(self) -> bool:  # I Swear to got i wrote this while i'm drunk, but it works tho wtf
+        if self.refresh_time < 0.25:
+            print("You set refresh time below 250ms, which hard to interrupt manually")
+            print("Adding delay before starting...")
+            await asyncio.sleep(5.75)
+
         try:
-            asyncio.ensure_future(self.__manager())
-        except:
+            self.__manager_task = asyncio.create_task(self.__manager())
+        except Exception as e:
+            print(f"Starting failed to Start ! {e}")
             return False
         print("Tekek service Started!")
+        self.running = True
         return True
 
-    # --- Manager --- #
-    async def __console_log_manager(self, rec_list: List[Record]):
-        """ Manage Records queue to send to console """
-        for i in range(len(rec_list)):
-            rec: Record = rec_list.pop(0)
-            status = False
-            while not status:
-                for i in range(3):  # Try 3 times
-                    status = await self.__log_to_console(rec)
-                    if status:
-                        break
-                break
+    def stop(self):
+        self.running = False
 
     async def __remote_log_manager(self, rec_list: List[Record]):
         """ Manage Records queue to send to remote server """
         for i in range(len(rec_list)):
             rec: Record = rec_list.pop(0)
             status = False
-            while not status:
-                for i in range(3):  # Try 3 times
-                    status = await self.__log_to_remote(rec)
-                    if status:
-                        break
-                break
+            for i in range(3):  # Try 3 times
+                status = await self.__log_to_remote(rec)
+                if status:
+                    break
 
     async def __file_log_manager(self, rec_list: List[Record]):
         """ Manage Records queue to write to file"""
         for i in range(len(rec_list)):
             rec: Record = rec_list.pop(0)
             status = False
-            while not status:
-                for i in range(3):  # Try 3 times
-                    status = await self.__log_to_file(rec)
-                    if status:
-                        break
-                break
+            for i in range(3):  # Try 3 times
+                status = await self.__log_to_file(rec)
+                if status:
+                    break
 
     async def __manager(self):
-        """ Run Asynchronous Logger """
-        q = []
-        for i in self.__levels:
-            while not self.__levels[i].queue.is_empty():
-                q.append(self.__levels[i].queue.get())
+        """ Run Asynchronous Watcher, Manager, Logger """
+        print("Manager Running")
+        while True:
+            q = []
+            for i in self.__levels:
+                while not self.__levels[i].queue.is_empty():
+                    q.append(self.__levels[i].queue.get())
 
-        if not q:
-            print("Skipped...")
-        else:
-            asyncio.ensure_future(self.__console_log_manager(q))
-            asyncio.ensure_future(self.__remote_log_manager(q))
-            asyncio.ensure_future(self.__file_log_manager(q))
+            if q:
+                asyncio.ensure_future(self.__remote_log_manager(q))
+                asyncio.ensure_future(self.__file_log_manager(q))
 
-        await asyncio.sleep(1)
-        asyncio.ensure_future(self.__manager())
+            await asyncio.sleep(self.refresh_time)
+
+            if not self.running:
+                return
 
     # --- Logging Methods --- #
     async def __record(
@@ -129,7 +143,7 @@ class Tekek:
            uuid: str = None,
            level: Level = None
     ):
-        """ Create Record
+        """ Create and Queue Record
 
         @param message: record message
         @type message: str
@@ -144,6 +158,7 @@ class Tekek:
         """
 
         # if identifier not set, set to tekek name
+
         if not identifier:
             identifier = self.name
 
@@ -169,9 +184,11 @@ class Tekek:
             level=level
         )
 
+        asyncio.ensure_future(self.__log_to_console(rec))
         self.__levels[rec.level.name].queue.add(rec)
 
     async def __log_to_console(self, record: Record) -> bool:
+        """ Log Record to Console directly """
         if not self.__console_logging:
             return True
 
@@ -184,6 +201,7 @@ class Tekek:
             return False
 
     async def __log_to_remote(self, record: Record) -> bool:
+        """ Log Record to Remote server """
         if not self.__remote_logging:
             return True
 
@@ -193,6 +211,7 @@ class Tekek:
             return False
 
     async def __log_to_file(self, record: Record) -> bool:
+        """ Log Record to File """
         if not self.__file_logging:
             return True
 
@@ -203,6 +222,11 @@ class Tekek:
 
     # --- Getter / Setter Methods --- #
     def __add_level_by_level(self, level: Level):
+        """ Add new level using Level Object
+
+        @param level: your new level
+        @type level: Level
+        """
         assert type(level.name) == str
         assert type(level.importance) == int
 
@@ -215,6 +239,11 @@ class Tekek:
         self.__levels[level.name] = _lm
 
     def __add_level_by_level_model(self, level_model: LevelModel):
+        """ Add new level using LevelModel Object
+
+        @param level_model: LevelModel object for your new shiny level
+        @type level_model: LevelModel
+        """
         assert type(level_model.model) == Level
         assert type(level_model.request_meta) == RequestMeta
         assert type(level_model.request_model) == RequestModel
@@ -351,3 +380,7 @@ class Tekek:
         """
         self.__file_logging = True
         return self.__file_logging
+
+    def set_logger(self, logger: logging.Logger):
+        self.__logger = logger
+

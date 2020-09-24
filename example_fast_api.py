@@ -1,19 +1,15 @@
-from sanic import Sanic
-from sanic.response import json
+from typing import Optional
+
+import fastapi
 from tekek import Tekek
 
-app = Sanic("sanic_example")
-logger = Tekek("sanic_example")
+
+app = fastapi.FastAPI()
+logger = Tekek("my_fast_api")
 
 
-@app.route("/", methods=["GET"])
-async def root(request):
-    return json(
-        {
-            "status": "Hello World!"
-        }
-    )
 
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+@app.get("/")
+async def root():
+    logger.log("root accessed ! hello world!", "root")
+    return {"status": "Hello World!"}

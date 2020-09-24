@@ -65,6 +65,42 @@ def function_b():
 
 and yes it is regular function not an `async` function. why ? Because **Tekek** is smart enough to handle it for you. don't worry it barely scratch your application performance
 
+## Compatibility Example
+
+### Sanic
+
+oh yeah, if you _**Gotta Go Fast**_, you need to develop it **FAST** ! use tekek as your logging and debugging tool !
+
+```python
+from sanic import Sanic
+from sanic.response import json
+from tekek import Tekek
+
+app = Sanic("REALLY_FAST_API")
+logger = Tekek("gotta_go_fast_boi")
+
+
+@app.route("/", methods=["GET"])
+async def root(request):
+    logger.log("root accessed ! hello world!", "root")
+    return json(
+        {
+            "status": "Hello World!"
+        }
+    )
+
+
+if __name__ == "__main__":
+    app.add_task(logger.start())
+    app.run(host="0.0.0.0", port=8000)
+```
+
+### Fast API
+
+
+
+### Your Own Script!
+
 ## Da Real Deal!
 
 Go Ahead and Read : <a href="">Usage Documentations</a>
