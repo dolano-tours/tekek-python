@@ -4,7 +4,15 @@
 
 <h1 align=center>Tekek</h1>
 <p align=center>
-    <img src="https://travis-ci.com/dolano-tours/tekek-client.svg?branch=nightly" alt="tekek-build"/>
+<img alt="Travis (.org)" src="https://img.shields.io/travis/dolano-tours/tekek/nightly?label=nightly-build">
+<img alt="Travis (.org)" src="https://img.shields.io/travis/dolano-tours/tekek/production?label=production-build">
+<img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/tekek">
+<img alt="PyPI - License" src="https://img.shields.io/pypi/l/tekek">
+<img alt="PyPI" src="https://img.shields.io/pypi/v/tekek">
+<img alt="PyPI - Status" src="https://img.shields.io/pypi/status/tekek">
+<img alt="PyPI - Format" src="https://img.shields.io/pypi/format/tekek">
+
+<img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/tekek">
 </p>
 <p align=center><b>Tekek</b> [təʔkəʔ] is easy to use, fast, server-agnostic, asynchronous, highly configurable local and remote logging tool </p>
 
