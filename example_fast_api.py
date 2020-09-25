@@ -1,12 +1,9 @@
-from typing import Optional
-
-import fastapi
+from fastapi import FastAPI
 from tekek import Tekek
 
 
-app = fastapi.FastAPI()
-logger = Tekek("my_fast_api")
-
+app = FastAPI()
+logger = Tekek("my_fast_api", app=app)
 
 
 @app.get("/")

@@ -6,7 +6,7 @@ import logging
 
 from datetime import datetime
 from _io import TextIOWrapper
-from typing import Dict, Union, Callable, List
+from typing import Dict, Union, Callable, List, Tuple, Optional
 from uuid import uuid4
 
 from .models import Record
@@ -17,9 +17,8 @@ from .models import DEFAULT_REQUEST_MODEL_JSON
 from .models import DEFAULT_REQUEST_META
 
 
-# TODO: support formatter
-# TODO:
 class Tekek:
+    # TODO: support console formatter
     def __init__(
             self,
             name: str,
@@ -36,7 +35,7 @@ class Tekek:
             logger: logging.Logger = None,
             refresh_time: float = 0.3,
 
-            compat_app=None
+            app=None
     ):
         self.name: str = name
         self.refresh_time: float = refresh_time
@@ -45,6 +44,7 @@ class Tekek:
         # --- CONSOLE --- #
         if not logger:
             logger: logging.Logger = logging.Logger(self.name, 10)
+
         self.__logger: logging.Logger = logger
         self.__console_logging: bool = console_logging
         self.__console_file: TextIOWrapper = console_file
@@ -69,16 +69,23 @@ class Tekek:
             self.add_level(i)
 
         # TODO: Fix this compat_app thing
-        if compat_app.__class__.__name__ == "FastAPI":
-            asyncio.ensure_future(self.start())
-        elif compat_app.__class__.__name__ == "Sanic":
-            compat_app.add_task(self.start())
+        if app:
+            if hasattr(app, "__name__") or hasattr(app, "__class__"):
+                if app.__class__.__name__ == "FastAPI":
+                    print("Detected Compatible FastAPI App")
+                    asyncio.ensure_future(self.start())
+                elif app.__class__.__name__ == "Sanic":
+                    print("Detected Compatible Sanic App")
+                    app.add_task(self.start())
+            self.compatibility_mode = True
+        else:
+            self.compatibility_mode = False
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.__manager_task.cancel()
         self.stop()
 
-    async def start(self) -> bool:  # I Swear to got i wrote this while i'm drunk, but it works tho wtf
+    async def start(self):  # I Swear to got i wrote this while i'm drunk, but it works tho wtf
+        """ Start Coroutine """
         if self.refresh_time < 0.25:
             print("You set refresh time below 250ms, which hard to interrupt manually")
             print("Adding delay before starting...")
@@ -88,19 +95,19 @@ class Tekek:
             self.__manager_task = asyncio.create_task(self.__manager())
         except Exception as e:
             print(f"Starting failed to Start ! {e}")
-            return False
+            return
         print("Tekek service Started!")
         self.running = True
-        return True
+        return self.__manager_task
 
     def stop(self):
+        self.__manager_task.cancel()
         self.running = False
 
     async def __remote_log_manager(self, rec_list: List[Record]):
         """ Manage Records queue to send to remote server """
-        for i in range(len(rec_list)):
+        while len(rec_list) > 0:
             rec: Record = rec_list.pop(0)
-            status = False
             for i in range(3):  # Try 3 times
                 status = await self.__log_to_remote(rec)
                 if status:
@@ -108,9 +115,8 @@ class Tekek:
 
     async def __file_log_manager(self, rec_list: List[Record]):
         """ Manage Records queue to write to file"""
-        for i in range(len(rec_list)):
+        while len(rec_list) > 0:
             rec: Record = rec_list.pop(0)
-            status = False
             for i in range(3):  # Try 3 times
                 status = await self.__log_to_file(rec)
                 if status:
@@ -118,30 +124,33 @@ class Tekek:
 
     async def __manager(self):
         """ Run Asynchronous Watcher, Manager, Logger """
-        print("Manager Running")
-        while True:
-            q = []
-            for i in self.__levels:
-                while not self.__levels[i].queue.is_empty():
-                    q.append(self.__levels[i].queue.get())
+        try:  # Dude, i was really drunk. why do i need try clause again ?
+            print("Manager Running")
+            while True:
+                q = []
+                for i in self.__levels:
+                    while not self.__levels[i].queue.is_empty():
+                        q.append(self.__levels[i].queue.get())
 
-            if q:
-                asyncio.ensure_future(self.__remote_log_manager(q))
-                asyncio.ensure_future(self.__file_log_manager(q))
+                if q:
+                    asyncio.create_task(self.__remote_log_manager(q))
+                    asyncio.create_task(self.__file_log_manager(q))
 
-            await asyncio.sleep(self.refresh_time)
+                await asyncio.sleep(self.refresh_time)
 
-            if not self.running:
-                return
+                if not self.running:
+                    return
+        except asyncio.CancelledError:
+            print("Manager Exited successfully")
 
     # --- Logging Methods --- #
     async def __record(
-           self,
-           message: str,
-           identifier: str = None,
-           timestamp: float = None,
-           uuid: str = None,
-           level: Level = None
+            self,
+            message: str,
+            identifier: str = None,
+            timestamp: float = None,
+            uuid: str = None,
+            level: Level = None
     ):
         """ Create and Queue Record
 
@@ -259,8 +268,21 @@ class Tekek:
         @rtype: Callable
         """
 
-        def __logging_func(self, message: str, identifier: str = None):
-            asyncio.ensure_future(self.__record(message, identifier, level=level))
+        def __logging_func(self, message: str, identifier: str = None) -> Tuple[bool, Union[Exception, Level]]:
+            """ Create Record and Queue for logging
+
+            @param message: log message
+            @type message: str
+            @param identifier: where the log coming from, so server know where it came from
+            @type identifier: str
+            @return: for testing purposes
+            @rtype: Tuple[bool, Union[Exception, Level]]
+            """
+            try:
+                asyncio.ensure_future(self.__record(message, identifier, level=level))
+                return True, level
+            except Exception as e:
+                return False, e
 
         return __logging_func
 
@@ -277,6 +299,7 @@ class Tekek:
         else:
             raise TypeError("Unsupported type of {}. expected Level or LevelModel".format(type(level)))
 
+        # TODO: implement save name, for example you cant have '-' as function name
         setattr(self, str(level.name).lower(), types.MethodType(self.__logging_func_factory(level), self))
 
     def set_request_meta(self, new_request_meta: RequestMeta):

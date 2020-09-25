@@ -1,10 +1,9 @@
-import time
-
 from datetime import datetime
 from dataclasses import dataclass
 
 from .types import RequestBodyType
 from .types import MethodType
+
 
 @dataclass
 class Level:

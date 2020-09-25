@@ -2,8 +2,9 @@ from sanic import Sanic
 from sanic.response import json
 from tekek import Tekek
 
+
 app = Sanic("sanic_example")
-logger = Tekek("sanic_example", compat_app=app)
+logger = Tekek("sanic_example", app=app)
 
 
 @app.route("/", methods=["GET"])

@@ -76,8 +76,8 @@ from sanic import Sanic
 from sanic.response import json
 from tekek import Tekek
 
-app = Sanic("REALLY_FAST_API")
-logger = Tekek("gotta_go_fast_boi")
+app = Sanic("sanic_example")
+logger = Tekek("sanic_example", app=app)
 
 
 @app.route("/", methods=["GET"])
@@ -89,17 +89,102 @@ async def root(request):
         }
     )
 
-
 if __name__ == "__main__":
-    app.add_task(logger.start())
     app.run(host="0.0.0.0", port=8000)
 ```
 
 ### Fast API
 
+A beautiful API Framework need a beautiful tekek as well ;)
 
+```python
+from fastapi import FastAPI
+from tekek import Tekek
+
+
+app = FastAPI()
+logger = Tekek("my_fast_api", app=app)
+
+
+@app.get("/")
+async def root():
+    logger.log("root accessed ! hello world!", "root")
+    return {"status": "Hello World!"}
+```
 
 ### Your Own Script!
+
+Of course you can use your own app! let's create `my_app` as an example
+
+using `coroutine` function
+
+```python
+import asyncio
+from tekek import Tekek
+
+
+logger = Tekek("mah_own")
+
+
+async def my_app(some_param: int):
+    logger.log(f"My App Run Successfully! {some_param}")
+    ...  # Your Beautiful app
+
+    return True
+
+
+async def main():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
+    await asyncio.gather(
+        my_app(3),
+        logger.start()
+    )
+
+
+if __name__ == '__main__':
+    asyncio.run(main())
+```
+
+using `class`
+
+```python
+import asyncio
+from tekek import Tekek
+
+
+logger = Tekek("mah_own")
+
+
+class MyApp:
+    def __init__(self):
+        self.some_vars = 3
+
+    async def app(self):
+        logger.log(f"App Ran! {self.some_vars}")
+        ...  # Your beautiful app
+
+    async def start(self):
+        asyncio.ensure_future(self.app())
+
+
+my_app = MyApp()
+
+
+async def main():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
+    await asyncio.gather(
+        my_app.start(),
+        logger.start()
+    )
+
+
+if __name__ == '__main__':
+    asyncio.run(main())
+```
 
 ## Da Real Deal!
 
