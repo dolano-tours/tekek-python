@@ -20,4 +20,4 @@ jobs:
   include:
     - test:
       script: 
-        - venv/pytest tests/
+        - pytest tests/
