@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="tekek",
-    version="0.1.6",
+    version="0.1.7",
     author="Erlangga Ibrahim",
     author_email="erlanggaibr2@gmail.com",
     description="An Asynchronous Remote and Local Debugging Tools",
