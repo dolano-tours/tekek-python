@@ -1,5 +1,5 @@
 import asyncio
-from tekek import Tekek
+from .tekek import Tekek
 
 
 logger = Tekek("mah_own")

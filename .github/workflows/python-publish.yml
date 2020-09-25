@@ -1,0 +1,35 @@
+name: Upload Python Package
+
+on:
+  push:
+    branches: production
+  pull_request:
+    branches: production
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        python-versions: ['3.7', '3.8']
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Pythons
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-versions }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install --upgrade setuptools wheel twine
+    - name: Build and publish
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload dist/*

@@ -14,7 +14,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.7
@@ -25,6 +25,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pylint
-    - name: Analysing the code with pylint
+    - name: Analyze Main Tekek Modules
       run: |
-        pylint `ls -R|grep .py$|xargs`
+        pylint tekek/*
+    - name: Analyze Examples
+      run: |
+        pylint example_*.py

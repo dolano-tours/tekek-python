@@ -1,6 +1,6 @@
 from sanic import Sanic
 from sanic.response import json
-from tekek import Tekek
+from .tekek import Tekek
 
 
 app = Sanic("sanic_example")
