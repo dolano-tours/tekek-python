@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from tekek import Tekek
+from .tekek import Tekek
 
 
 app = FastAPI()
