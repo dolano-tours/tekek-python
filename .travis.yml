@@ -1,25 +1,21 @@
+arch: amd64
+os: linux
+dist: focal
+
 language: python
 python:
+  - "3.6"
   - "3.7"
   - "3.8"
-  - "3.8-dev"
   - "nightly"
 
-before_install:
-  - sudo apt-get install -fy python3
-  - sudo apt-get install -fy python3-pip
-  - sudo apt-get install -fy python3-virtualenv
-  - virtualenv --always-copy venv
-
 install: 
-  - source venv/bin/activate
-  - venv/bin/pip install sanic
-  - venv/bin/pip install fastapi
-  - venv/bin/pip install pytest
+  - pip install sanic
+  - pip install fastapi
+  - pip install pytest
 
 stages:
   - test
-
 jobs:
   include:
     - test:

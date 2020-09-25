@@ -3,6 +3,9 @@
 </p>
 
 <h1 align=center>Tekek</h1>
+<p align=center>
+    <img src="https://api.travis-ci.org/dolano-tours/tekek.svg?branch=production&status=unknown" alt="tekek-build"/>
+</p>
 <p align=center><b>Tekek</b> [təʔkəʔ] is easy to use, fast, server-agnostic, asynchronous, highly configurable local and remote logging tool </p>
 
 ## Features
