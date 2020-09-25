@@ -199,4 +199,4 @@ if __name__ == '__main__':
 
 ## Da Real Deal!
 
-Go Ahead and Read : <a href="">Usage Documentations</a>
+Go Ahead and Read : <a href="https://github.com/dolano-tours/tekek/blob/production/USAGE.md">Usage Documentations</a>
