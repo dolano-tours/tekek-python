@@ -1,4 +1,4 @@
-name: Pylint
+name: Pytest
 
 on:
   push:
@@ -28,10 +28,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install --upgrade pylint
-    - name: Analyze Main Tekek Mods
+        pip install --upgrade pytest
+    - name: Running Unit Tests
       run: |
-        pylint tekek/
-    - name: Analyze Examples
-      run: |
-        pylint examples/
+        pytest tests/

@@ -1,3 +1,9 @@
+""" Main Tekek Declarations
+
+@author: Erlangga Ibrahim
+@todo: Support Console Formatter
+"""
+
 import sys
 import time
 import types
@@ -6,7 +12,7 @@ import logging
 
 from datetime import datetime
 from _io import TextIOWrapper
-from typing import Dict, Union, Callable, List, Tuple, Optional
+from typing import Dict, Union, Callable, List, Tuple
 from uuid import uuid4
 
 from .models import Record
@@ -18,6 +24,29 @@ from .models import DEFAULT_REQUEST_META
 
 
 class Tekek:
+    """ Tekek
+
+    @param name: An Application Name
+    @type name: str
+    @param console_logging: enable/disable console logging, default: True
+    @type console_logging: bool
+    @param console_file: target sys file, default: sys.stderr
+    @type console_file: str
+    @param remote_logging: enable/disable remote logging, default: False
+    @type remote_logging: bool
+    @param remote_path: remote logging host: default: None
+    @type remote_path: str
+    @param file_logging: enable/disable file logging, default: False
+    @type file_logging: bool
+    @param file_path: target file to log into
+    @type file_path: str
+    @param logger: python built-in's logger, default logging.Logger()
+    @type logger: logging.Logger
+    @param refresh_time: refresh time for watcher to check if there is any record inside a queue. default 0.3
+    @type refresh_time: float
+    @param app: compatible app. supports Sanic, FastAPI
+    @type app: None
+    """
     # TODO: support console formatter
     def __init__(
             self,
@@ -68,7 +97,7 @@ class Tekek:
         for i in [LOG, DEBUG, INFO, WARNING, ERROR, EXCEPTION, CRITICAL]:
             self.add_level(i)
 
-        # TODO: Fix this compat_app thing
+        # TODO: Fix/Enhance this compat_app Compatible App
         if app:
             if hasattr(app, "__name__") or hasattr(app, "__class__"):
                 if app.__class__.__name__ == "FastAPI":
@@ -93,8 +122,8 @@ class Tekek:
 
         try:
             self.__manager_task = asyncio.create_task(self.__manager())
-        except Exception as e:
-            print(f"Starting failed to Start ! {e}")
+        except Exception as exception:
+            print(f"Starting failed to Start ! {exception}")
             return
         print("Tekek service Started!")
         self.running = True
@@ -108,7 +137,7 @@ class Tekek:
         """ Manage Records queue to send to remote server """
         while len(rec_list) > 0:
             rec: Record = rec_list.pop(0)
-            for i in range(3):  # Try 3 times
+            for _ in range(3):  # Try 3 times
                 status = await self.__log_to_remote(rec)
                 if status:
                     break
@@ -117,7 +146,7 @@ class Tekek:
         """ Manage Records queue to write to file"""
         while len(rec_list) > 0:
             rec: Record = rec_list.pop(0)
-            for i in range(3):  # Try 3 times
+            for _ in range(3):  # Try 3 times
                 status = await self.__log_to_file(rec)
                 if status:
                     break
@@ -127,14 +156,14 @@ class Tekek:
         try:  # Dude, i was really drunk. why do i need try clause again ?
             print("Manager Running")
             while True:
-                q = []
+                queue = []
                 for i in self.__levels:
                     while not self.__levels[i].queue.is_empty():
-                        q.append(self.__levels[i].queue.get())
+                        queue.append(self.__levels[i].queue.get())
 
-                if q:
-                    asyncio.create_task(self.__remote_log_manager(q))
-                    asyncio.create_task(self.__file_log_manager(q))
+                if queue:
+                    asyncio.create_task(self.__remote_log_manager(queue))
+                    asyncio.create_task(self.__file_log_manager(queue))
 
                 await asyncio.sleep(self.refresh_time)
 
@@ -180,10 +209,10 @@ class Tekek:
         if not level:
             level = INFO
 
-        assert type(message) == str
-        assert type(timestamp) == float
-        assert type(uuid) == str
-        assert type(level) == Level
+        assert isinstance(message, str)
+        assert isinstance(timestamp, float)
+        assert isinstance(uuid, str)
+        assert isinstance(level, Level)
 
         rec: Record = Record(
             uuid=uuid,
@@ -201,33 +230,29 @@ class Tekek:
         if not self.__console_logging:
             return True
 
-        try:
-            time = datetime.strftime(datetime.fromtimestamp(record.timestamp), "%H:%M:%S %d-%m-%Y")
-            level = record.level.name
-            print(f"[{time}][{record.identifier}][{level}] {record.message}")  # TODO: Convert to Logger instead
-            return True
-        except:
-            return False
+        time_now = datetime.strftime(datetime.fromtimestamp(record.timestamp), "%H:%M:%S %d-%m-%Y")
+        level = record.level.name
+        print(
+            f"[{time_now}][{record.identifier}][{level}] {record.message}"
+        )  # TODO: Convert to Logger instead
+
+        return True
 
     async def __log_to_remote(self, record: Record) -> bool:
         """ Log Record to Remote server """
         if not self.__remote_logging:
             return True
 
-        try:
-            return True  # TODO: Implement log to remote
-        except:
-            return False
+        # TODO: Implement log to remote
+        return True
 
     async def __log_to_file(self, record: Record) -> bool:
         """ Log Record to File """
         if not self.__file_logging:
             return True
 
-        try:
-            return True  # TODO: Implement log to file
-        except:
-            return False
+        # TODO: Implement log to file
+        return True
 
     # --- Getter / Setter Methods --- #
     def __add_level_by_level(self, level: Level):
@@ -236,8 +261,8 @@ class Tekek:
         @param level: your new level
         @type level: Level
         """
-        assert type(level.name) == str
-        assert type(level.importance) == int
+        assert isinstance(level.name, str)
+        assert isinstance(level.importance, int)
 
         _lm = LevelModel(
             model=level,
@@ -253,9 +278,9 @@ class Tekek:
         @param level_model: LevelModel object for your new shiny level
         @type level_model: LevelModel
         """
-        assert type(level_model.model) == Level
-        assert type(level_model.request_meta) == RequestMeta
-        assert type(level_model.request_model) == RequestModel
+        assert isinstance(level_model.model, Level)
+        assert isinstance(level_model.request_meta, RequestMeta)
+        assert isinstance(level_model.request_model, RequestModel)
 
         self.__levels[level_model.model.name] = level_model
 
@@ -268,7 +293,11 @@ class Tekek:
         @rtype: Callable
         """
 
-        def __logging_func(self, message: str, identifier: str = None) -> Tuple[bool, Union[Exception, Level]]:
+        def __logging_func(
+                self,
+                message: str,
+                identifier: str = None
+        ) -> Tuple[bool, Union[Exception, Level]]:
             """ Create Record and Queue for logging
 
             @param message: log message
@@ -281,8 +310,8 @@ class Tekek:
             try:
                 asyncio.ensure_future(self.__record(message, identifier, level=level))
                 return True, level
-            except Exception as e:
-                return False, e
+            except Exception as exception:
+                return False, exception
 
         return __logging_func
 
@@ -292,15 +321,23 @@ class Tekek:
         @param level:
         @type level: Level or LevelModel
         """
-        if type(level) == Level:
+        if isinstance(level, Level):
             self.__add_level_by_level(level)
-        elif type(level) == LevelModel:
+        elif isinstance(level, LevelModel):
             self.__add_level_by_level_model(level)
         else:
-            raise TypeError("Unsupported type of {}. expected Level or LevelModel".format(type(level)))
+            raise TypeError(
+                "Unsupported type of {}. expected Level or LevelModel".format(
+                    type(level)
+                )
+            )
 
         # TODO: implement save name, for example you cant have '-' as function name
-        setattr(self, str(level.name).lower(), types.MethodType(self.__logging_func_factory(level), self))
+        setattr(
+            self,
+            str(level.name).lower(),
+            types.MethodType(self.__logging_func_factory(level), self)
+        )
 
     def set_request_meta(self, new_request_meta: RequestMeta):
         """ Set global request meta, applied to all of the levels
@@ -308,7 +345,7 @@ class Tekek:
         @param new_request_meta: new request meta
         @type new_request_meta: RequestMeta
         """
-        assert type(new_request_meta) == RequestMeta
+        assert isinstance(new_request_meta, RequestMeta)
 
         self.request_meta: RequestMeta = new_request_meta
 
@@ -318,7 +355,7 @@ class Tekek:
         @param new_request_model: new request model
         @type new_request_model: RequestModel
         """
-        assert type(new_request_model) == RequestModel
+        assert isinstance(new_request_model, RequestModel)
 
         self.request_model: RequestModel = new_request_model
 
@@ -330,8 +367,8 @@ class Tekek:
         @param new_request_meta: new request meta
         @type new_request_meta: RequestMeta
         """
-        assert type(target_level) == Level
-        assert type(new_request_meta) == RequestMeta
+        assert isinstance(target_level, Level)
+        assert isinstance(new_request_meta, RequestMeta)
 
         for i in self.__levels:
             if i == target_level:
@@ -347,8 +384,8 @@ class Tekek:
         @param new_request_model: new request model
         @type new_request_model: RequestModel
         """
-        assert type(target_level) == Level
-        assert type(new_request_model) == RequestModel
+        assert isinstance(target_level, Level)
+        assert isinstance(new_request_model, RequestModel)
 
         for i in self.__levels:
             if i == target_level:
@@ -405,5 +442,10 @@ class Tekek:
         return self.__file_logging
 
     def set_logger(self, logger: logging.Logger):
+        """ Set Logger to a new Logger
+
+        @param logger: new logger
+        @type logger: logging.Logger
+        """
         self.__logger = logger
 

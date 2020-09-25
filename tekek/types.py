@@ -1,3 +1,8 @@
+""" Tekek Enumeration and Static Types
+
+@author: Erlangga Ibrahim
+"""
+
 from enum import Enum
 
 

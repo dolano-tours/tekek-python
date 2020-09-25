@@ -1,10 +1,6 @@
 name: Upload Python Package
 
 on:
-  push:
-    branches: production
-  pull_request:
-    branches: production
   release:
     types: [created]
 
@@ -14,11 +10,11 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        python-versions: ['3.7', '3.8']
+        python-versions: [3.7, 3.8, 3.9]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Pythons
+    - name: Set up Python ${{ matrix.python-versions }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-versions }}

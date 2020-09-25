@@ -19,7 +19,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="debdeda2-0af8-4fb4-84ff-f5e5f110c50c" name="Default Changelist" comment="" />
+    <list default="true" id="debdeda2-0af8-4fb4-84ff-f5e5f110c50c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/pytest.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/pylint.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/pylint.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/python-publish.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/python-publish.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/stack.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/tekek.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/tekek.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekek/types.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekek/types.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

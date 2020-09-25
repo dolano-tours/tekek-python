@@ -1,3 +1,5 @@
+""" Tekek Setup Script """
+
 import setuptools
 
 with open("README.md", "r") as fh:
@@ -5,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="tekek",
-    version="0.1.7",
+    version="0.2.6",
     author="Erlangga Ibrahim",
     author_email="erlanggaibr2@gmail.com",
     description="An Asynchronous Remote and Local Debugging Tools",

@@ -1,14 +1,33 @@
+""" Tekek Models and Default Models Declaration
+
+@author: Erlangga Ibrahim
+"""
 from datetime import datetime
 from dataclasses import dataclass
 
 from .types import RequestBodyType
 from .types import MethodType
 
+from typing import List, Optional
+
 
 @dataclass
 class Level:
+    """ Level
+
+    to store record's level information
+
+    @param name:
+    @type name: str
+    @param importance:
+    @type importance: int
+    """
     name: str
     importance: int
+
+    def __init__(self, name: str, importance: int):
+        self.name = name
+        self.importance = importance
 
 
 LOG: Level = Level(name="LOG", importance=10)
@@ -22,7 +41,10 @@ CRITICAL: Level = Level(name="CRITICAL", importance=50)
 
 @dataclass
 class Record:
-    """ Default Record Structure """
+    """ Record Object
+
+    Store log information
+    """
     uuid: str
     timestamp: float
     identifier: str
@@ -40,7 +62,10 @@ class Record:
 
 @dataclass
 class RequestMeta:
-    """ Request Configuration """
+    """ Request Configuration
+
+    store request configuration
+    """
     method_type: MethodType
     body_type: RequestBodyType
     host: str
@@ -55,6 +80,10 @@ DEFAULT_REQUEST_META: RequestMeta = RequestMeta(
 
 @dataclass
 class LevelRequestModel:
+    """ Request model for a Level
+
+    configure the structure of a level to be sent as a body
+    """
     name: str
     importance: str
 
@@ -85,6 +114,7 @@ DEFAULT_REQUEST_MODEL_JSON: RequestModelJSON = RequestModelJSON(
     )
 )
 
+
 @dataclass
 class RequestModelFORM(RequestModel):
     """ Default form or x-www-urlencoded Request Body Structure """
@@ -101,12 +131,53 @@ DEFAULT_REQUEST_MODEL_FORM: RequestModelFORM = RequestModelFORM(
     level_importance="level_importance"
 )
 
-from .stack import Stack
+
+class Stack:
+    """ Tekek Stack Engine
+
+    used to store records inside memory before sending it to remote location or file
+    """
+    def __init__(self):
+        self.__stacks: List[Record] = []
+
+    def add(self, obj: Record) -> bool:
+        """ Add Object to Stack
+
+        @param obj: object to add
+        @type obj: Record
+        @return: Add Status
+        @rtype: bool
+        """
+        self.__stacks.append(obj)
+        return True
+
+    def get(self) -> Optional[Record]:
+        """ Get Object from stack
+
+        @return: Pop Result
+        @rtype: Record
+        """
+        if len(self.__stacks) <= 0:
+            return None
+        obj = self.__stacks.pop(0)
+        return obj
+
+    def is_empty(self) -> bool:
+        """ Check if stack is empty
+
+        @return: empty status
+        @rtype: bool
+        """
+        return len(self.__stacks) == 0
 
 
 @dataclass
 class LevelModel:
+    """ Level Model
+
+    a model to store level model
+    """
     model: Level
     request_meta: RequestMeta
     request_model: RequestModel
-    queue: Stack = Stack(Level)
+    queue: Stack = Stack()
