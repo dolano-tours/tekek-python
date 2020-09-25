@@ -1,4 +1,3 @@
-from .__level import __Level as Importance
-from .__debugger import __Debugger as Tekek
-
-# TODO: deploy to PyPI
+from .models import Record
+from .models import LOG, DEBUG, INFO, WARNING, ERROR, EXCEPTION, CRITICAL
+from .tekek import Tekek
