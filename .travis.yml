@@ -12,12 +12,5 @@ python:
 install: 
   - pip install sanic
   - pip install fastapi
-  - pip install pytest
 
-stages:
-  - test
-jobs:
-  include:
-    - test:
-      script: 
-        - pytest tests/
+script: pytest
