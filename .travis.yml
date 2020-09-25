@@ -1,0 +1,22 @@
+language: python
+
+before_install:
+  - sudo apt-get install -fy python3
+  - sudo apt-get install -fy python3-pip
+  - sudo apt-get install -fy python3-virtualenv
+  - virtualenv --always-copy venv
+
+install: 
+  - source venv/bin/activate
+  - venv/bin/pip install sanic
+  - venv/bin/pip install fastapi
+  - venv/bin/pip install pytest
+
+stages:
+  - test
+
+jobs:
+  include:
+    - test:
+      script: 
+        - venv/bin/pytest tests/
