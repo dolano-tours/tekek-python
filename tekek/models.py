@@ -4,11 +4,10 @@
 """
 from datetime import datetime
 from dataclasses import dataclass
+from typing import List, Optional
 
 from .types import RequestBodyType
 from .types import MethodType
-
-from typing import List, Optional
 
 
 @dataclass
@@ -52,6 +51,11 @@ class Record:
     message: str
 
     def to_str(self):
+        """ Format Attributes into a formatted string
+
+        @todo: implement custom formatter
+        @todo: create default formatter
+        """
         return "[{}][{}][{}] {}".format(
             datetime.fromtimestamp(self.timestamp).strftime("%d%m%y-%H:%M:%S.%f"),
             self.identifier,

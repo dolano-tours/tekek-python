@@ -11,9 +11,9 @@ import asyncio
 import logging
 
 from datetime import datetime
-from _io import TextIOWrapper
 from typing import Dict, Union, Callable, List, Tuple
 from uuid import uuid4
+from _io import TextIOWrapper
 
 from .models import Record
 from .models import RequestMeta, RequestModel
@@ -42,7 +42,7 @@ class Tekek:
     @type file_path: str
     @param logger: python built-in's logger, default logging.Logger()
     @type logger: logging.Logger
-    @param refresh_time: refresh time for watcher to check if there is any record inside a queue. default 0.3
+    @param refresh_time: refresh between queue check. default 0.3s
     @type refresh_time: float
     @param app: compatible app. supports Sanic, FastAPI
     @type app: None
@@ -448,4 +448,3 @@ class Tekek:
         @type logger: logging.Logger
         """
         self.__logger = logger
-
